@@ -1,8 +1,8 @@
 
 import db from "./drizzle/db";
 import { eq, gt, like } from "drizzle-orm";
-import { ProfilesTable, UsersTable } from "./drizzle/schema";
-import { TIUser, TSUser, TIProfile, TSProfile } from "./drizzle/schema";
+import { ProfilesTable, UsersTable, StateTable } from "./drizzle/schema";
+import { TIUser, TSUser, TIProfile, TSProfile , TSState } from "./drizzle/schema";
 
 // Query to get all users
 const getUsers = async (): Promise<TSUser[] | null> => {
@@ -59,6 +59,11 @@ const getUsersWithQuery = async (param: number) => {
 const searchUsers = async (param: string) => {
     return await db.select().from(UsersTable).where(like(UsersTable.fullname, `%${param}%`));
 }
+const getStates = async (): Promise<TSState[]> => {
+    return await db.select().from(StateTable);
+  };
+
+  
 
 async function main() {
     // Example usage:
@@ -70,5 +75,8 @@ async function main() {
     // console.log(await getProfiles());
     // console.log(await getUsersWithQuery(90));
     // console.log(await searchUsers("John"));
+    console.log("States:");
+    const states = await getStates();
+    console.log(states);
 }
 main();
