@@ -8,28 +8,43 @@ importers:
 
   .:
     dependencies:
+      '@hono/node-server':
+        specifier: ^1.11.2
+        version: 1.11.2
+      '@hono/zod-validator':
+        specifier: ^0.2.2
+        version: 0.2.2(hono@4.4.3)(zod@3.23.8)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
       drizzle-orm:
-        specifier: ^0.31.0
-        version: 0.31.0(@types/pg@8.11.6)(pg@8.11.5)
+        specifier: ^0.31.1
+        version: 0.31.1(@types/pg@8.11.6)(pg@8.12.0)
+      drizzle-orm-pg:
+        specifier: ^0.16.3
+        version: 0.16.3(@types/pg@8.11.6)(drizzle-orm@0.31.1(@types/pg@8.11.6)(pg@8.12.0))(pg@8.12.0)
+      hono:
+        specifier: ^4.4.3
+        version: 4.4.3
       pg:
-        specifier: ^8.11.5
-        version: 8.11.5
+        specifier: ^8.12.0
+        version: 8.12.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
       '@types/node':
-        specifier: ^20.14.0
-        version: 20.14.0
+        specifier: ^20.14.2
+        version: 20.14.2
       '@types/pg':
         specifier: ^8.11.6
         version: 8.11.6
       drizzle-kit:
-        specifier: ^0.22.1
-        version: 0.22.1
+        specifier: ^0.22.2
+        version: 0.22.2
       tsx:
         specifier: ^4.11.2
         version: 4.11.2
@@ -457,8 +472,18 @@ packages:
     resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
 
-  '@types/node@20.14.0':
-    resolution: {integrity: sha512-5cHBxFGJx6L4s56Bubp4fglrEpmyJypsqI6RgzMfBHWUJQGWAAi8cWcgetEbZXHYXo9C2Fa4EEds/uSyS4cxmA==}
+  '@hono/node-server@1.11.2':
+    resolution: {integrity: sha512-JhX0nUC66GeDxpIdMKWDRMEwtQBa64CY907iAF1sYqb4m2p2PdSU7zkbnNhAZLg/6IjSlTuj6CF307JlBXVvpg==}
+    engines: {node: '>=18.14.1'}
+
+  '@hono/zod-validator@0.2.2':
+    resolution: {integrity: sha512-dSDxaPV70Py8wuIU2QNpoVEIOSzSXZ/6/B/h4xA7eOMz7+AarKTSGV8E6QwrdcCbBLkpqfJ4Q2TmBO0eP1tCBQ==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.19.1
+
+  '@types/node@20.14.2':
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
 
   '@types/pg@8.11.6':
     resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
@@ -479,12 +504,31 @@ packages:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
     engines: {node: '>=12'}
 
-  drizzle-kit@0.22.1:
-    resolution: {integrity: sha512-2at6LeHSGdhkwGtZbghtJaMUxWmeuLfX9X1O7um/SxfVbtK580h2jd59Gd5Z7TnofSS2tgmFiyEtM4fBat3KeA==}
+  drizzle-kit@0.22.2:
+    resolution: {integrity: sha512-dxluXlhT1N9bpj2eZR3N/z3u4H0PbbrBYgyouIobFF25tOt2Buy1abx26Jii96qcYV0JgxjhnuV+FBcgR0Xa0w==}
     hasBin: true
 
-  drizzle-orm@0.31.0:
-    resolution: {integrity: sha512-Uf5a3sGOqoyC+ZpQ4NCPR373q0pHOHezIJwdumMix+3rzLdtKgRhdaOabYeqNHBB48gF3Q9rrndkNc4ddE3AWA==}
+  drizzle-orm-pg@0.16.3:
+    resolution: {integrity: sha512-KohmZ3AbDP6waq3AG6+fMK7dkCmLJo2lWThioLDluveY/6E4Y44YLaWiZKg3dtq/SaawnyMa9jOy6FqLw29xyQ==}
+    deprecated: This package is merged into drizzle-orm starting from 0.17.0. See https://www.npmjs.com/package/drizzle-orm
+    peerDependencies:
+      '@neondatabase/serverless': '>=0.1 <0.2'
+      '@types/pg': '>=8 <9'
+      drizzle-orm: '>=0.16 <0.17'
+      pg: '>=8 <9'
+      postgres: '>=3 <4'
+    peerDependenciesMeta:
+      '@neondatabase/serverless':
+        optional: true
+      '@types/pg':
+        optional: true
+      pg:
+        optional: true
+      postgres:
+        optional: true
+
+  drizzle-orm@0.31.1:
+    resolution: {integrity: sha512-hTbYne2XX3y6sV7WSxcPH6/vNSiQSUG9VZsFI27jBMCN0OT3Ok7ao3pIT5OMAqWkzJCRFgGjAaUeTAZWPgOKag==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -591,6 +635,10 @@ packages:
   get-tsconfig@4.7.5:
     resolution: {integrity: sha512-ZCuZCnlqNzjb4QprAzXKdpp/gh6KTxSJuw3IBsPnV/7fV4NxC9ckB+vPTt8w7fJA0TaSD7c55BR47JD6MEDyDw==}
 
+  hono@4.4.3:
+    resolution: {integrity: sha512-G7rTruKzrHXPz1KB4B50deKydPA9+aeei+WC1hikP0abN9N+a6yORuweageaqWocYfYNkpoqA5ezGV2mzQasvw==}
+    engines: {node: '>=16.0.0'}
+
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -627,8 +675,8 @@ packages:
     resolution: {integrity: sha512-cRL3JpS3lKMGsKaWndugWQoLOCoP+Cic8oseVcbr0qhPzYD5DWXK+RZ9LY9wxRf7RQia4SCwQlXk0q6FCPrVng==}
     engines: {node: '>=10'}
 
-  pg@8.11.5:
-    resolution: {integrity: sha512-jqgNHSKL5cbDjFlHyYsCXmQDrfIX/3RsNwYqpd4N0Kt8niLuNoRNH+aazv6cOd43gPh9Y4DjQCtb+X0MH0Hvnw==}
+  pg@8.12.0:
+    resolution: {integrity: sha512-A+LHUSnwnxrnL/tZ+OLfqR1SxLN3c/pgDztZ47Rpbsd4jUytsTtwQo/TLPRzPJMp/1pbhYVhH9cuSZLAajNfjQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -704,6 +752,9 @@ packages:
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
+
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -923,13 +974,20 @@ snapshots:
 
   '@faker-js/faker@8.4.1': {}
 
-  '@types/node@20.14.0':
+  '@hono/node-server@1.11.2': {}
+
+  '@hono/zod-validator@0.2.2(hono@4.4.3)(zod@3.23.8)':
+    dependencies:
+      hono: 4.4.3
+      zod: 3.23.8
+
+  '@types/node@20.14.2':
     dependencies:
       undici-types: 5.26.5
 
   '@types/pg@8.11.6':
     dependencies:
-      '@types/node': 20.14.0
+      '@types/node': 20.14.2
       pg-protocol: 1.6.1
       pg-types: 4.0.2
 
@@ -941,7 +999,7 @@ snapshots:
 
   dotenv@16.4.5: {}
 
-  drizzle-kit@0.22.1:
+  drizzle-kit@0.22.2:
     dependencies:
       '@esbuild-kit/esm-loader': 2.6.5
       esbuild: 0.19.12
@@ -949,10 +1007,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.31.0(@types/pg@8.11.6)(pg@8.11.5):
+  drizzle-orm-pg@0.16.3(@types/pg@8.11.6)(drizzle-orm@0.31.1(@types/pg@8.11.6)(pg@8.12.0))(pg@8.12.0):
+    dependencies:
+      drizzle-orm: 0.31.1(@types/pg@8.11.6)(pg@8.12.0)
     optionalDependencies:
       '@types/pg': 8.11.6
-      pg: 8.11.5
+      pg: 8.12.0
+
+  drizzle-orm@0.31.1(@types/pg@8.11.6)(pg@8.12.0):
+    optionalDependencies:
+      '@types/pg': 8.11.6
+      pg: 8.12.0
 
   esbuild-register@3.5.0(esbuild@0.19.12):
     dependencies:
@@ -1045,6 +1110,8 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
+  hono@4.4.3: {}
+
   ms@2.1.2: {}
 
   obuf@1.1.2: {}
@@ -1058,9 +1125,9 @@ snapshots:
 
   pg-numeric@1.0.2: {}
 
-  pg-pool@3.6.2(pg@8.11.5):
+  pg-pool@3.6.2(pg@8.12.0):
     dependencies:
-      pg: 8.11.5
+      pg: 8.12.0
 
   pg-protocol@1.6.1: {}
 
@@ -1082,10 +1149,10 @@ snapshots:
       postgres-interval: 3.0.0
       postgres-range: 1.1.4
 
-  pg@8.11.5:
+  pg@8.12.0:
     dependencies:
       pg-connection-string: 2.6.4
-      pg-pool: 3.6.2(pg@8.11.5)
+      pg-pool: 3.6.2(pg@8.12.0)
       pg-protocol: 1.6.1
       pg-types: 2.2.0
       pgpass: 1.0.5
@@ -1141,3 +1208,5 @@ snapshots:
   undici-types@5.26.5: {}
 
   xtend@4.0.2: {}
+
+  zod@3.23.8: {}
