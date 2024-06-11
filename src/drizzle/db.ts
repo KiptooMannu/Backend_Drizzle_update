@@ -1,18 +1,14 @@
-import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Client } from "pg";
-import * as schema from "./schema"
+import { Client } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
 
+// Create a new client instance
 export const client = new Client({
-    connectionString: process.env.Database_URL as string,   //get the database url from the environment
-})
+  connectionString: process.env.DATABASE_URL,
+});
 
-const main = async () => {
-    await client.connect();  //connect to the database
-}
-main();
+client.connect();
 
+const db = drizzle(client);
 
-const db = drizzle(client, { schema, logger: true })  //create a drizzle instance
+export default db;
 
-export default db;  //export the drizzle instance

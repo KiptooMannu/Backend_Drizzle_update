@@ -12,8 +12,6 @@ export const createUser = async (user: any) => {
 }
 
 export const updateUser = async (id: number, user: any) => {
-    console.log('User Info:', user);
-
     if (!user || Object.keys(user).length === 0) {
         throw new Error('No values to set');
     }

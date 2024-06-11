@@ -1,9 +1,7 @@
-// File: src/city.router.ts
-
 import { Hono } from 'hono';
 import { handleGetCities, handleCreateCity, handleUpdateCity, handleDeleteCity, handleSearchCities } from './city.controller';
 
-export const cityRouter = new Hono();
+const cityRouter = new Hono();
 
 // Define routes for city resource
 cityRouter.get('/cities', handleGetCities);

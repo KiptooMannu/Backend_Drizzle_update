@@ -3,7 +3,7 @@ import { CityTable } from '../drizzle/schema';
 import { eq } from 'drizzle-orm';
 
 // Service to handle database operations for cities
-export const getCity = async () => {
+export const getCities = async () => {
     return await db.select().from(CityTable);
 }
 
@@ -23,6 +23,6 @@ export const deleteCity = async (id: number) => {
     return await db.delete(CityTable).where(eq(CityTable.id, id)).returning();
 }
 
-export const searchCity = async (name: string) => {
+export const searchCities = async (name: string) => {
     return await db.select().from(CityTable).where(eq(CityTable.name, name));
 }

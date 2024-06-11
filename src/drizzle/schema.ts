@@ -9,14 +9,14 @@ export const UsersTable = pgTable("users", {
   phone: varchar("phone", { length: 100 }),
   address: varchar("address", { length: 100 }),
   score: integer("score"),
-  // contact_phone: varchar("contact_phone", { length: 15 }).notNull(),
-  // phone_verified: boolean("phone_verified").default(false),
-  // email: varchar("email", { length: 100 }).notNull(),
-  // email_verified: boolean("email_verified").default(false),
-  // confirmation_code: varchar("confirmation_code", { length: 6 }),
-  // password: varchar("password", { length: 255 }).notNull(),
-  // created_at: date("created_at").default(sql`CURRENT_TIMESTAMP`),
-  // updated_at: date("updated_at").default(sql`CURRENT_TIMESTAMP`)
+  contact_phone: varchar("contact_phone", { length: 15 }).notNull(),
+  phone_verified: boolean("phone_verified").default(false),
+  email: varchar("email", { length: 100 }).notNull(),
+  email_verified: boolean("email_verified").default(false),
+  confirmation_code: varchar("confirmation_code", { length: 6 }),
+  password: varchar("password", { length: 255 }).notNull(),
+  created_at: date("created_at").default(sql`CURRENT_TIMESTAMP`),
+  updated_at: date("updated_at").default(sql`CURRENT_TIMESTAMP`)
 });
 
 // Profiles Table (1-1 relationship with Users)

@@ -5,10 +5,26 @@ import{serve} from '@hono/node-server';
 //USER ROUTER
 
 import {userRouter} from './users/user.router'
-import {cityRouter} from './city/city.router'
+import cityRouter from './city/city.router'
 import {orderRouter} from './orders/order.router'
 import{restaurantRouter} from './restaurant/restaurant.router'
 import stateRouter from './state/state.router'
+import categoryRouter from './category/category.router';
+import addressRouter from './adddress/address.router';
+import profileRouter from './profile/profile.router';
+import driverRouter from './Driver/driver.router';
+import commentRouter from './comment/comment.router'
+import { statusCatalogRouter } from './statuscatalogue/statuscatalogue.router';
+import { orderStatusRouter } from './orderstatus/orderstatus.router'; // Import the orderStatusRouter
+import { menuItemRouter } from './menuitem/menuitem.router'; // Import the menuItemRouter
+import { orderMenuItemRouter } from './orderMenuItem/orderMenuItem.router'; // Import the orderMenuItemRouter
+import { restaurantOwnerRouter } from './Restaurant Owner Table/RestaurantOwner.Router'; // Import the restaurantOwnerRouter
+
+import  authRouter  from './AUTH/auth.router';
+import { authenticateToken } from './middlewares/auth.middleware';
+
+
+
 
 
 const app = new Hono().basePath("/api")
@@ -25,7 +41,19 @@ app.route ("/" , cityRouter)
 app.route ("/" , orderRouter)
 app.route ("/" ,  restaurantRouter)
 app.route ("/" , stateRouter)
+app.route ("/"  , categoryRouter)
+app.route("/", addressRouter);
+app.route('/', profileRouter);
+app.route('/', driverRouter);
+app.route('/' ,commentRouter)
+app.route("/", statusCatalogRouter);
+app.route("/", orderStatusRouter);
+app.route("/", menuItemRouter);
+app.route("/", orderMenuItemRouter);
+app.route("/", restaurantOwnerRouter);
+app.route ("/" , authRouter, )
 
+console.log('Routes registered:', app.routes); // Log all registered routes
 
 
 serve({
@@ -34,3 +62,4 @@ serve({
 })
 
 console.log(`Server is running at port ${process.env.PORT}`);
+

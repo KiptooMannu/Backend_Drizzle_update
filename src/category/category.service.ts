@@ -23,4 +23,6 @@ export const deleteCategory = async (id: number) => {
     return await db.delete(CategoryTable).where(eq(CategoryTable.id, id)).returning();
 }
 
-export
+export const searchCategories = async (name: string) => {
+    return await db.select().from(CategoryTable).where(eq(CategoryTable.name, name));
+}
