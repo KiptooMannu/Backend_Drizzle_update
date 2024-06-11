@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch ./src/main.ts",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/main.js",
     "build": "tsc",
     "gen": "drizzle-kit generate",
     "migrate": " tsx src/drizzle/migrate.ts",
@@ -23,7 +23,7 @@
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.31.1",
-    "drizzle-orm-pg": "^0.16.3",
+    
     "express": "^4.19.2",
     "hono": "^4.4.4",
     "jsonwebtoken": "^9.0.2",
