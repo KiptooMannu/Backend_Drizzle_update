@@ -1,4 +1,4 @@
-import db from "./db";
+import {db} from "./db";
 import { eq, gt, like } from "drizzle-orm";
 import {
   ProfilesTable,

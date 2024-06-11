@@ -1,6 +1,6 @@
 // File: src/orders/orders.service.ts
 
-import db from '../drizzle/db';
+import {db} from '../drizzle/db';
 import { OrdersTable } from '../drizzle/schema';
 import { eq } from 'drizzle-orm';
 

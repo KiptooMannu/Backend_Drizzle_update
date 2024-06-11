@@ -1,4 +1,4 @@
-import db from '../drizzle/db';
+import {db} from '../drizzle/db';
 import { MenuItemTable } from '../drizzle/schema';
 import { eq } from 'drizzle-orm';
 

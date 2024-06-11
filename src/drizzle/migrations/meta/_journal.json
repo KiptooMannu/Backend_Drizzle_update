@@ -5,43 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1717524330884,
-      "tag": "0000_sparkling_lady_vermin",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1717664703095,
-      "tag": "0001_mushy_yellow_claw",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1717664806258,
-      "tag": "0002_sloppy_wild_child",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1717664927709,
-      "tag": "0003_legal_vampiro",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1718056835818,
-      "tag": "0004_giant_mantis",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1718059505418,
-      "tag": "0005_right_satana",
+      "when": 1718129565271,
+      "tag": "0000_amusing_hammerhead",
       "breakpoints": true
     }
   ]

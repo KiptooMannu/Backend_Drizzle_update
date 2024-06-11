@@ -1,4 +1,4 @@
-import db from '../drizzle/db';
+import {db} from '../drizzle/db';
 import { RestaurantTable } from '../drizzle/schema';
 import { eq, like } from 'drizzle-orm';
 

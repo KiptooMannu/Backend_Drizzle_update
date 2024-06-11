@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import db from '../drizzle/db'; // Ensure this path is correct and matches your actual setup
+import {db} from '../drizzle/db'; // Ensure this path is correct and matches your actual setup
 import { UsersTable, TIUser, TSUser } from '../drizzle/schema';
 import { eq, and } from 'drizzle-orm';
 import { userSchema, loginSchema } from '../validator'; // Ensure these schemas are correctly defined and imported

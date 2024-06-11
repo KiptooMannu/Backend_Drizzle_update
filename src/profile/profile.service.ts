@@ -1,4 +1,4 @@
-import db from '../drizzle/db';
+import {db} from '../drizzle/db';
 import { ProfilesTable } from '../drizzle/schema';
 import { eq } from 'drizzle-orm';
 

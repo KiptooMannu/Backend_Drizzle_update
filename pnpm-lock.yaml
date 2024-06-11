@@ -14,6 +14,9 @@ importers:
       '@hono/zod-validator':
         specifier: ^0.2.2
         version: 0.2.2(hono@4.4.4)(zod@3.23.8)
+      '@neondatabase/serverless':
+        specifier: ^0.9.3
+        version: 0.9.3
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
@@ -28,10 +31,7 @@ importers:
         version: 16.4.5
       drizzle-orm:
         specifier: ^0.31.1
-        version: 0.31.1(@types/pg@8.11.6)(pg@8.12.0)
-      drizzle-orm-pg:
-        specifier: ^0.16.3
-        version: 0.16.3(@types/pg@8.11.6)(drizzle-orm@0.31.1(@types/pg@8.11.6)(pg@8.12.0))(pg@8.12.0)
+        version: 0.31.1(@neondatabase/serverless@0.9.3)(@types/pg@8.11.6)(pg@8.12.0)
       express:
         specifier: ^4.19.2
         version: 4.19.2
@@ -516,6 +516,9 @@ packages:
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
     hasBin: true
 
+  '@neondatabase/serverless@0.9.3':
+    resolution: {integrity: sha512-6ZBK8asl2Z3+ADEaELvbaVVGVlmY1oAzkxxZfpmXPKFuJhbDN+5fU3zYBamsahS/Ch1zE+CVWB3R+8QEI2LMSw==}
+
   '@types/bcrypt@5.0.2':
     resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
 
@@ -690,25 +693,6 @@ packages:
   drizzle-kit@0.22.2:
     resolution: {integrity: sha512-dxluXlhT1N9bpj2eZR3N/z3u4H0PbbrBYgyouIobFF25tOt2Buy1abx26Jii96qcYV0JgxjhnuV+FBcgR0Xa0w==}
     hasBin: true
-
-  drizzle-orm-pg@0.16.3:
-    resolution: {integrity: sha512-KohmZ3AbDP6waq3AG6+fMK7dkCmLJo2lWThioLDluveY/6E4Y44YLaWiZKg3dtq/SaawnyMa9jOy6FqLw29xyQ==}
-    deprecated: This package is merged into drizzle-orm starting from 0.17.0. See https://www.npmjs.com/package/drizzle-orm
-    peerDependencies:
-      '@neondatabase/serverless': '>=0.1 <0.2'
-      '@types/pg': '>=8 <9'
-      drizzle-orm: '>=0.16 <0.17'
-      pg: '>=8 <9'
-      postgres: '>=3 <4'
-    peerDependenciesMeta:
-      '@neondatabase/serverless':
-        optional: true
-      '@types/pg':
-        optional: true
-      pg:
-        optional: true
-      postgres:
-        optional: true
 
   drizzle-orm@0.31.1:
     resolution: {integrity: sha512-hTbYne2XX3y6sV7WSxcPH6/vNSiQSUG9VZsFI27jBMCN0OT3Ok7ao3pIT5OMAqWkzJCRFgGjAaUeTAZWPgOKag==}
@@ -1554,6 +1538,10 @@ snapshots:
       - encoding
       - supports-color
 
+  '@neondatabase/serverless@0.9.3':
+    dependencies:
+      '@types/pg': 8.11.6
+
   '@types/bcrypt@5.0.2':
     dependencies:
       '@types/node': 20.14.2
@@ -1738,15 +1726,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm-pg@0.16.3(@types/pg@8.11.6)(drizzle-orm@0.31.1(@types/pg@8.11.6)(pg@8.12.0))(pg@8.12.0):
-    dependencies:
-      drizzle-orm: 0.31.1(@types/pg@8.11.6)(pg@8.12.0)
+  drizzle-orm@0.31.1(@neondatabase/serverless@0.9.3)(@types/pg@8.11.6)(pg@8.12.0):
     optionalDependencies:
-      '@types/pg': 8.11.6
-      pg: 8.12.0
-
-  drizzle-orm@0.31.1(@types/pg@8.11.6)(pg@8.12.0):
-    optionalDependencies:
+      '@neondatabase/serverless': 0.9.3
       '@types/pg': 8.11.6
       pg: 8.12.0
 
