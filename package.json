@@ -19,9 +19,9 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.31.1",
+    "drizzle-orm": "^0.31.2",
     "express": "^4.19.2",
-    "hono": "^4.4.4",
+    "hono": "^4.4.5",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.12.0",
     "zod": "^3.23.8"
@@ -35,8 +35,8 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.14.2",
     "@types/pg": "^8.11.6",
-    "drizzle-kit": "^0.22.2",
-    "tsx": "^4.11.2",
+    "drizzle-kit": "^0.22.7",
+    "tsx": "^4.15.2",
     "typescript": "^5.4.5"
   }
 }
