@@ -58,8 +58,8 @@ console.log('Routes registered:', app.routes); // Log all registered routes
 
 serve({
     fetch: app.fetch,
-    port: Number(process.env.port)
+    port: 8000
 })
 
-console.log(`Server is running at port ${process.env.PORT}`);
+console.log(`Server is running at port 8000`);
 
