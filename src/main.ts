@@ -19,19 +19,14 @@ import { orderStatusRouter } from './orderstatus/orderstatus.router'; // Import 
 import { menuItemRouter } from './menuitem/menuitem.router'; // Import the menuItemRouter
 import { orderMenuItemRouter } from './orderMenuItem/orderMenuItem.router'; // Import the orderMenuItemRouter
 import { restaurantOwnerRouter } from './Restaurant Owner Table/RestaurantOwner.Router'; // Import the restaurantOwnerRouter
+import { statesCityRouter } from './StatesCity/StatesCity.Router';
+
+import { orderUserRouter } from './ORDER AND USER/userorderr.router'; // Import the orderUserRouter
 
 import  authRouter  from './AUTH/auth.router';
 
 
-
-
-
-
-
 const app = new Hono().basePath("/api")
-
-
-
 //default route
 app.get('ok', (c) => {
     return c.text("Server running")
@@ -53,8 +48,10 @@ app.route("/", menuItemRouter);
 app.route("/", orderMenuItemRouter);
 app.route("/", restaurantOwnerRouter);
 app.route('/auth', authRouter) // /api/v1/auth/register
+app.route('/', statesCityRouter);
+app.route('/api', orderUserRouter);
 
-console.log('Routes registered:', app.routes); // Log all registered routes
+console.log('Routes registered:', app.routes); 
 
 
 serve({

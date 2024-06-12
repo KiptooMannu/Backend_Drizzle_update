@@ -170,7 +170,8 @@ export const StateTable = pgTable("state", {
     name: varchar("name", { length: 100 }).notNull(),
     code: varchar("code", { length: 10 }).notNull()
   });
-  
+
+
 // Status Catalog Table (1-n relationship with OrderStatus)
 export const StatusCatalogTable = pgTable("status_catalog", {
   id: serial("id").primaryKey(),
