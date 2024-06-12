@@ -1,11 +1,28 @@
+
 import { Hono } from 'hono';
-import { handleGetUsers, handleCreateUser, handleUpdateUser, handleDeleteUser, handleSearchUsers } from './user.controller';
+import { getUsersController, getUserByIdController, createUserController, updateUserController, deleteUserController } from './user.controller';
+import { zValidator } from '@hono/zod-validator';
+// Import the userSchema from the validators module
+import { userSchema } from '../validator';
+import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middlewares/auth.middleware';
 
 export const userRouter = new Hono();
 
-// Define routes for user resource
-userRouter.get('/users', handleGetUsers);
-userRouter.post('/users', handleCreateUser);
-userRouter.put('/users/:id', handleUpdateUser);
-userRouter.delete('/users/:id', handleDeleteUser);
-userRouter.get('/users/search', handleSearchUsers);
+// get all users
+userRouter
+    .get("users", userRoleAuth, getUsersController)
+    .post("users", zValidator('json', userSchema, (result, c) => {
+        if (!result.success) {
+            return c.json(result.error, 400);
+        }
+    }), createUserController)
+
+// get user by id
+userRouter
+    .get("users/:id", bothRoleAuth, getUserByIdController)
+    .put("users/:id", zValidator('json', userSchema, (result, c) => {
+        if (!result.success) {
+            return c.json(result.error, 400);
+        }
+    }), updateUserController)
+    .delete("users/:id", deleteUserController);

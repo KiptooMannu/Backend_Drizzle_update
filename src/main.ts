@@ -21,7 +21,8 @@ import { orderMenuItemRouter } from './orderMenuItem/orderMenuItem.router'; // I
 import { restaurantOwnerRouter } from './Restaurant Owner Table/RestaurantOwner.Router'; // Import the restaurantOwnerRouter
 
 import  authRouter  from './AUTH/auth.router';
-import { authenticateToken } from './middlewares/auth.middleware';
+
+
 
 
 
@@ -51,7 +52,7 @@ app.route("/", orderStatusRouter);
 app.route("/", menuItemRouter);
 app.route("/", orderMenuItemRouter);
 app.route("/", restaurantOwnerRouter);
-app.route ("/" , authRouter, )
+app.route('/auth', authRouter) // /api/v1/auth/register
 
 console.log('Routes registered:', app.routes); // Log all registered routes
 

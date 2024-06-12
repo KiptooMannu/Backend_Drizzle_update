@@ -1,6 +1,8 @@
 
-import { pgTable, serial, text, varchar, integer, boolean, date, decimal } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, varchar, integer, boolean, date, decimal ,pgEnum } from "drizzle-orm/pg-core";
 import { sql } from 'drizzle-orm';
+import { relations  } from "drizzle-orm";
+
 
 // User Table
 export const UsersTable = pgTable("users", {
@@ -14,10 +16,34 @@ export const UsersTable = pgTable("users", {
   email: varchar("email", { length: 100 }).notNull(),
   email_verified: boolean("email_verified").default(false),
   confirmation_code: varchar("confirmation_code", { length: 6 }),
-  password: varchar("password", { length: 255 }).notNull(),
   created_at: date("created_at").default(sql`CURRENT_TIMESTAMP`),
   updated_at: date("updated_at").default(sql`CURRENT_TIMESTAMP`)
 });
+
+// Role Enum
+export const roleEnum = pgEnum("role", ["admin", "user", "both"]);
+
+export const AuthOnUsersTable = pgTable("auth_on_users", {
+  id: serial("id").primaryKey(),
+  user_id: integer("user_id")
+    .notNull()
+    .references(() => UsersTable.id, { onDelete: "cascade" }),
+  username: varchar("username", { length: 255 }).notNull(),
+  password: varchar("password", { length: 255 }).notNull(),
+  role: roleEnum// AuthOnUsersTable
+("role").default("user")
+});
+
+// User and Auth relationship
+export const AuthOnUsersTableRelations = relations(AuthOnUsersTable, ({ one }) => ({
+  user: one(UsersTable, {
+    fields: [AuthOnUsersTable.user_id],
+    references: [UsersTable.id],
+  }),
+}));
+
+
+
 
 // Profiles Table (1-1 relationship with Users)
 export const ProfilesTable = pgTable("profiles", {
@@ -189,4 +215,7 @@ export type TIStatusCatalog = typeof StatusCatalogTable.$inferInsert;
 export type TSStatusCatalog = typeof StatusCatalogTable.$inferSelect;
 export type TIRestaurantOwner = typeof RestaurantOwnerTable.$inferInsert;
 export type TSRestaurantOwner = typeof RestaurantOwnerTable.$inferSelect;
+// AuthOnUsersTable
+export type TIAuthOnUsers = typeof AuthOnUsersTable.$inferInsert;
+export type TSAuthOnUsers = typeof AuthOnUsersTable.$inferSelect;
 

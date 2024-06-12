@@ -1,28 +1,38 @@
-import {db} from '../drizzle/db';
-import { UsersTable } from '../drizzle/schema';
-import { eq } from 'drizzle-orm';
 
-// Service to handle database operations for users
-export const getUsers = async () => {
-    return await db.select().from(UsersTable);
+import { eq } from "drizzle-orm";
+import { db } from "../drizzle/db";
+
+import { TIUser, TSUser, UsersTable } from "../drizzle/schema";
+
+// GET ALL USERS
+export const getUsersService = async (): Promise<TSUser[] | null> => {
+    const users = await db.query.UsersTable.findMany();
+    return users;
+};
+// GET USER BY ID
+export const getUserByIdService = async (id: number): Promise<TSUser | undefined> => {
+    const user = await db.query.UsersTable.findFirst({
+        where: eq(UsersTable.id, id)
+    });
+    return user;
 }
 
-export const createUser = async (user: any) => {
-    return await db.insert(UsersTable).values(user).returning();
+
+
+// CREATE USER
+export const createUserService = async (user: TIUser) => {
+    await db.insert(UsersTable).values(user)
+    return "user created successfully";
 }
 
-export const updateUser = async (id: number, user: any) => {
-    if (!user || Object.keys(user).length === 0) {
-        throw new Error('No values to set');
-    }
-
-    return await db.update(UsersTable).set(user).where(eq(UsersTable.id, id)).returning();
+//  UPDATE USER
+export const updateUserService = async (id: number, user: TIUser) => {
+    await db.update(UsersTable).set(user).where(eq(UsersTable.id, id));
+    return "user updated successfully";
 }
 
-export const deleteUser = async (id: number) => {
-    return await db.delete(UsersTable).where(eq(UsersTable.id, id)).returning();
-}
-
-export const searchUsers = async (fullName: string) => {
-    return await db.select().from(UsersTable).where(eq(UsersTable.fullname, fullName));
+// DELETE USER
+export const deleteUserService = async (id: number) => {
+    await db.delete(UsersTable).where(eq(UsersTable.id, id));
+    return "user deleted successfully";
 }

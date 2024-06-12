@@ -60,7 +60,6 @@ const createUser = async (user: TIUser) => {
       email: user.email,
       email_verified: user.email_verified,
       confirmation_code: user.confirmation_code,
-      password: user.password,
       created_at: user.created_at,
       updated_at: user.updated_at,
     })

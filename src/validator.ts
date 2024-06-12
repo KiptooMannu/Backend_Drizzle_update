@@ -14,7 +14,18 @@ export const authOnUsersSchema = userSchema.extend({
   role: z.string().optional(),
 });
 
-export const loginSchema = z.object({
-  email: z.string().email(),
+export const loginUserSchema = z.object({
+  username: z.string(),
   password: z.string().min(6),
 });
+
+
+export const registerUserSchema = z.object({
+  user_id: z.number(),
+  username: z.string(),
+  password: z.string(),
+  role: z.string().optional()
+})
+
+
+
