@@ -1,15 +1,15 @@
-// File: src/orders/orders.router.ts
+// File: src/orders/order.router.ts
 
 import { Hono } from 'hono';
-import { handleGetOrders, handleCreateOrder, handleUpdateOrder, handleDeleteOrder } from './order.controller';
+import { handleGetOrdersWithUsers, handleCreateOrder, handleUpdateOrder, handleDeleteOrder } from './order.controller';
+import { adminRoleAuth, bothRoleAuth } from './../middlewares/auth.middleware';
 
 export const orderRouter = new Hono();
 
 // Define routes for orders resource
-orderRouter.get('/orders', handleGetOrders);
-orderRouter.post('/orders', handleCreateOrder);
-orderRouter.put('/orders/:id', handleUpdateOrder);
-orderRouter.delete('/orders/:id', handleDeleteOrder);
-
+orderRouter.get('/orders', bothRoleAuth, handleGetOrdersWithUsers); // Both admin and user can view orders
+orderRouter.post('/orders', adminRoleAuth, handleCreateOrder); // Only admin can create orders
+orderRouter.put('/orders/:id', adminRoleAuth, handleUpdateOrder); // Only admin can update orders
+orderRouter.delete('/orders/:id', adminRoleAuth, handleDeleteOrder); // Only admin can delete orders
 
 export default orderRouter;
