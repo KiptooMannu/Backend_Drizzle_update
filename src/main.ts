@@ -81,7 +81,7 @@ app.get('/', (c) => {
         </head>
         <body>
             <div class="container">
-                <h1>Welcome to Drizzle Restaurant DB</h1>
+                <h1>CEO Kiptoo Mannu Welcomes You to Drizzle Restaurant DB</h1>
                 <p>Your favorite place to manage restaurant data efficiently.</p>
                 <a href="/api/ok" class="btn">Check Status</a>
             </div>
