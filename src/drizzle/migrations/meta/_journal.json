@@ -15,6 +15,13 @@
       "when": 1718181602240,
       "tag": "0001_panoramic_ego",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1718283372868,
+      "tag": "0002_lively_psynapse",
+      "breakpoints": true
     }
   ]
 }
