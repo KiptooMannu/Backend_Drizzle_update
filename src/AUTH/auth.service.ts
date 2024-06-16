@@ -1,42 +1,46 @@
-
 import { TIAuthOnUsers, TSAuthOnUsers, AuthOnUsersTable } from "../drizzle/schema";
 import { db } from "../drizzle/db";
 import { sql } from "drizzle-orm";
+import { sendWelcomeEmail } from "../Mailerr.js/Mailer";
 
 export const createAuthUserService = async (user: TIAuthOnUsers): Promise<string | null> => {
-    await db.insert(AuthOnUsersTable).values(user);
-    return "User created successfully";
-}
+    // Check if a user with the same email already exists
+    const existingUser = await db.query.AuthOnUsersTable.findFirst({
+        where: sql`${AuthOnUsersTable.email} = ${user.email}`,
+    });
 
-export const userLoginService = async (user: TSAuthOnUsers) => {
-  const { username } = user;
-  return await db.query.AuthOnUsersTable.findFirst({
-    columns: {
-      id: true,
-      username:true,
-      role:true,
-      password:true
-    },
-    where: sql`${AuthOnUsersTable.username} = ${username}`,
-    with: {
-      user: {
-        columns: {
-          fullname: true,
-          email: true,
-          contact_phone:true
-        }
-      }
+    if (existingUser) {
+        throw new Error("User with this email already exists");
     }
-  });
+
+    // Insert the new user
+    await db.insert(AuthOnUsersTable).values(user);
+
+    // Send welcome email
+    await sendWelcomeEmail(user.email, "Welcome to Our Service , Thank you for signing up!");
+
+    return "User created successfully";
 };
 
-// Service to check if a user with a given username already exists
-export const checkUserExistsService = async (username: string) => {
-  const userExists = await db.query.AuthOnUsersTable.findFirst({
-      columns: {
-          id: true
-      },
-      where: sql`${AuthOnUsersTable.username} = ${username}`
-  });
-  return userExists !== null;
+export const userLoginService = async (user: TSAuthOnUsers) => {
+    const { username } = user;
+    return await db.query.AuthOnUsersTable.findFirst({
+        columns: {
+            id: true,
+            username: true,
+            email: true,
+            role: true,
+            password: true,
+        },
+        where: sql`${AuthOnUsersTable.username} = ${username}`,
+        with: {
+            user: {
+                columns: {
+                    fullname: true,
+                    email: true,
+                    contact_phone: true,
+                },
+            },
+        },
+    });
 };

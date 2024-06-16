@@ -25,6 +25,7 @@ export const registerUserSchema = z.object({
   username: z.string(),
   password: z.string(),
   role: z.string().optional()
+ 
 })
 
 

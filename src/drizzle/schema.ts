@@ -29,6 +29,7 @@ export const AuthOnUsersTable = pgTable("auth_on_users", {
     .notNull()
     .references(() => UsersTable.id, { onDelete: "cascade" }),
   username: varchar("username", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
   password: varchar("password", { length: 255 }).notNull(),
   role: roleEnum// AuthOnUsersTable
 ("role").default("user")

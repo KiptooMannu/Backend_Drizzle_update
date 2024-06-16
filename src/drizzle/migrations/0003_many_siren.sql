@@ -1,0 +1,1 @@
+ALTER TABLE "auth_on_users" ADD COLUMN "email" varchar(255) NOT NULL;
