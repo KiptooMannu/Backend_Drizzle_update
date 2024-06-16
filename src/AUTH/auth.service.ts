@@ -29,3 +29,14 @@ export const userLoginService = async (user: TSAuthOnUsers) => {
     }
   });
 };
+
+// Service to check if a user with a given username already exists
+export const checkUserExistsService = async (username: string) => {
+  const userExists = await db.query.AuthOnUsersTable.findFirst({
+      columns: {
+          id: true
+      },
+      where: sql`${AuthOnUsersTable.username} = ${username}`
+  });
+  return userExists !== null;
+};

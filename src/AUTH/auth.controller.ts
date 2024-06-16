@@ -1,15 +1,21 @@
-
 import "dotenv/config";
 import { Context } from "hono";
-import { createAuthUserService, userLoginService } from "./auth.service";
-import bycrpt from "bcrypt";
+import { createAuthUserService, userLoginService, checkUserExistsService } from "./auth.service";
+import bcrypt from "bcrypt";
 import { sign } from "hono/jwt";
 
 export const signup = async (c: Context) => {
     try {
         const user = await c.req.json();
+        
+        // Check if user already exists
+        const userExists = await checkUserExistsService(user.username);
+        if (userExists) {
+            return c.json({ error: "User already exists" }, 400);
+        }
+        
         const pass = user.password;
-        const hashedPassword = await bycrpt.hash(pass, 10);
+        const hashedPassword = await bcrypt.hash(pass, 10);
         user.password = hashedPassword;
         const createUser = await createAuthUserService(user);
         if (!createUser) return c.text("User not created", 400);
@@ -27,7 +33,7 @@ export const loginUser = async (c: Context) => {
         const userExists = await userLoginService(user);
         console.log(userExists)
         if (userExists === null) return c.json({ error: "User not found" }, 404); // user not found
-        const userMatch = await bycrpt.compare(user.password, userExists?.password as string);
+        const userMatch = await bcrypt.compare(user.password, userExists?.password as string);
         if (!userMatch) {
             return c.json({ error: "Invalid Credentials" }, 400); // invalid password
         } else {
